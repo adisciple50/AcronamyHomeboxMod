@@ -61,7 +61,7 @@ function saveBlockSizes($BoxSettings){
 
 
 //javascript on page quit
-saveBlockSizes(ShrunkBoxes)
+//saveBlockSizes(ShrunkBoxes)
 
 //TODO create/modify homebox.css entry to hide CheckedBoxesList in
 
