@@ -47,7 +47,7 @@
 
 
 //loads user check boxes.
-<?php $bs = user_load($GLOBALS['user']['data']->BoxSettings); print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
+<?php $bs = $GLOBALS['user']['data']->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
 // function to save filledCheckboxData:
 <?php
 function saveBlockSizes($BoxSettings){
@@ -57,6 +57,8 @@ function saveBlockSizes($BoxSettings){
     user_save($account, $edit);
 }
 ?>
+
+
 
 //javascript on page quit
 saveBlockSizes(ShrunkBoxes)
