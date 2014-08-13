@@ -62,6 +62,12 @@ function hook_homebox_block_edit_form($block) {
     '#default_value' => $block->content,
     '#required' => TRUE,
   );
+  $form['shrunk'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('ToggleSmallerSize'),
+      '#default_value' => 'false',
+      '#required' => TRUE,
+  );
   $form['#validate'][] = 'project_issue_homebox_block_edit_form_validate';
 
   return $form;

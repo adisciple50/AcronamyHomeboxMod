@@ -47,12 +47,12 @@
 
 
 //loads user check boxes.
-<?php $bs = $GLOBALS['user']['data']->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
+<?php $bs = $user->data->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
 // function to save filledCheckboxData:
 <?php
 function saveBlockSizes($BoxSettings){
 // Make sure you are working with the fully loaded user object.
-    $account = user_load($GLOBALS['user']->uid);
+    $account = $user->uid;
     $edit['data']['BoxSettings'] = $BoxSettings;
     user_save($account, $edit);
 }
