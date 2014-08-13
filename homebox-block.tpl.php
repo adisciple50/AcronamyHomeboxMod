@@ -47,7 +47,7 @@
 
 
 //loads user check boxes.
-<?php $bs = user_load($GLOBALS['user']['data']->BoxSettings); print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
+<?php $bs = $GLOBALS['user']['data']->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
 // function to save filledCheckboxData:
 <?php
 function saveBlockSizes($BoxSettings){
@@ -58,8 +58,10 @@ function saveBlockSizes($BoxSettings){
 }
 ?>
 
+
+
 //javascript on page quit
-saveBlockSizes(ShrunkBoxes)
+//saveBlockSizes(ShrunkBoxes)
 
 //TODO create/modify homebox.css entry to hide CheckedBoxesList in
 
