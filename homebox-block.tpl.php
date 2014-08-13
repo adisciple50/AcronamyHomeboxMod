@@ -45,8 +45,10 @@
         Shrunkboxes.append(getElementId)
 //return ShrunkBoxes
 
-<?php $bs user_load($GLOBALS['user']['BoxSettings'];  ?>
 
+//loads user check boxes.
+<?php $bs = user_load($GLOBALS['user']['data']->BoxSettings); print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
+// function to save filledCheckboxData:
 <?php
 function saveBlockSizes($BoxSettings){
 // Make sure you are working with the fully loaded user object.
@@ -55,4 +57,10 @@ function saveBlockSizes($BoxSettings){
     user_save($account, $edit);
 }
 ?>
+
+//javascript on page quit
+saveBlockSizes(ShrunkBoxes)
+
+//TODO create/modify homebox.css entry to hide CheckedBoxesList in
+
 ?>
