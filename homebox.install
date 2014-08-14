@@ -54,7 +54,7 @@ function homebox_schema() {
         'type' => 'int',
         'size' => 'small',
         'not null' => TRUE,
-        'serialize' => TRUE,
+        'serialize' => FALSE,
         'object default' => array(),
       ),
 
