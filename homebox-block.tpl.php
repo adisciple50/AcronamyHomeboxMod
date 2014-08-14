@@ -12,7 +12,7 @@
       <?php if ($block->closable): ?>
         <a class="portlet-icon portlet-close"></a>
         <form class="checkboxForm" id="<?php print $block->key . 'checkboxForm'; ?>">
-            // to be checked by javascript if filled = true
+            <!-- to be checked by javascript if filled = true -->
             <input type="checkbox" class="PortletShrinkerCheckbox" id="<?php print $block->key ?>">
         </form>
       <?php endif; ?>
@@ -38,31 +38,37 @@
   </div>
 </div>
 
-//javescript:
-//ShrunkBoxes = list
-// foreach PortletShrinkCheckbox:
-    if portletShrinkCheckbox = filled/true:
-        Shrunkboxes.append(getElementId)
-//return ShrunkBoxes
-
-
-//loads user check boxes.
-<?php $bs = $user->data->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
-// function to save filledCheckboxData:
 <?php
+/**
+*javescript:
+*ShrunkBoxes = list
+* foreach PortletShrinkCheckbox:
+*    if portletShrinkCheckbox = filled/true:
+*        Shrunkboxes.append(getElementId)
+*return ShrunkBoxes
+*/
+?>
+<!--loads user check boxes.-->
+<?php $bs = $user->data->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
+<!-- function to save filledCheckboxData: -->
+<?php
+// the below function is redeclared twice. - heres the workaround...
+if (!function_exists('saveBlockSizes')) {
+    // ... proceed to declare your function
 function saveBlockSizes($BoxSettings){
 // Make sure you are working with the fully loaded user object.
     $account = $user->uid;
     $edit['data']['BoxSettings'] = $BoxSettings;
     user_save($account, $edit);
 }
+}
 ?>
 
-
-
+<?php
+/**
 //javascript on page quit
 //saveBlockSizes(ShrunkBoxes)
 
 //TODO create/modify homebox.css entry to hide CheckedBoxesList in
-
+*/
 ?>
