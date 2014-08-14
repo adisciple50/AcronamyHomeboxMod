@@ -50,11 +50,21 @@ function homebox_schema() {
         'serialize' => TRUE,
         'object default' => array(),
       ),
+      'shrunk' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'serialize' => TRUE,
+        'object default' => array(),
+      ),
+
     ),
     'primary key' => array('uid', 'name'),
   );
   return $schema;
 }
+
+// im confident that shrunk will work.
 
 /**
  * Implements hook_uninstall().
