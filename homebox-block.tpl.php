@@ -87,8 +87,8 @@ print "<span class='CheckedBoxesList'>" . $result[0] . $result[1] . "</span>"
 ?>
 /** 3. recieve post from page, and update user settings */
 <?php
-$result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $user->uid,'=')->execute()->fetchAssoc();
 function updateBoxSettings(){
+    $result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $user->uid,'=')->execute()->fetchAssoc();
     if($result){
         db_update('BoxSettings')->fields(array('CheckedBoxes' => $_POST,))->condition('uid',$user->uid, '=')->execute();
     }
