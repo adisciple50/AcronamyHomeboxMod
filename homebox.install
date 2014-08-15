@@ -51,11 +51,11 @@ function homebox_schema() {
         'object default' => array(),
       ),
       'shrunk' => array(
-        'type' => 'int',
-        'size' => 'small',
-        'not null' => TRUE,
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
         'serialize' => FALSE,
-        'default' => 1,
+        'default' => '',
       ),
 
     ),

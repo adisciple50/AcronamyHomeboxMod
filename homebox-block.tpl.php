@@ -39,29 +39,7 @@
 </div>
 
 <?php
-/**
-*javescript:
-*ShrunkBoxes = list
-* foreach PortletShrinkCheckbox:
-*    if portletShrinkCheckbox = filled/true:
-*        Shrunkboxes.append(getElementId)
-*return ShrunkBoxes
-*/
-?>
-<!--loads user check boxes.-->
-<?php $bs = $user->data->BoxSettings; print "<span class='CheckedBoxesList'>" . $bs . "</span>"; ?>
-<!-- function to save filledCheckboxData: -->
-<?php
-// the below function is redeclared twice. - heres the workaround...
-if (!function_exists('saveBlockSizes')) {
-    // ... proceed to declare your function
-function saveBlockSizes($BoxSettings){
-// Make sure you are working with the fully loaded user object.
-    $account = $user->uid;
-    $edit['data']['BoxSettings'] = $BoxSettings;
-    user_save($account, $edit);
-}
-}
+
 
 ?>
 
@@ -69,32 +47,28 @@ function saveBlockSizes($BoxSettings){
 /**
 //javascript on page quit
 //saveBlockSizes(ShrunkBoxes)
-
-//TODO create/modify homebox.css entry to hide CheckedBoxesList in
+//TODO create/modify homebox.css entry to hide shrunkList in
 */
+
 ?>
-/** method 2 */
-/** 1. create the database if it doesnt exist */
-<?php
-if(!db_table_exists('BoxSettings'))
-        {$table = array('uid' => '','CheckedBoxes' => '',);}
-    db_create_table('Boxsettings', $table);
-?>
+/** method 3 */
+
 /** 2. print users seetings to string */
 <?php
-$result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $users->uid,'=')->execute()->fetchAssoc();
-print "<span class='CheckedBoxesList'>" . $result[0] . $result[1] . "</span>"
+$userID = $user->uid;
+$result = db_select('homebox_users')->fields('shrunk')->condition('uid', $userID,'=')->execute()->fetchAssoc();
+print "<span class='shrunkList'>" . $result[0] . $result[1] . "</span>"
 ?>
 /** 3. recieve post from page, and update user settings */
 <?php
-function updateBoxSettings(){
-    $result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $user->uid,'=')->execute()->fetchAssoc();
-    if($result){
-        db_update('BoxSettings')->fields(array('CheckedBoxes' => $_POST,))->condition('uid',$user->uid, '=')->execute();
-    }
-    else{
-        db_insert('BoxSettings')->fields(array('uid' => user->uid,'CheckedBoxes' => $_POST,))->execute();
-    }
+
+$userID = $user->uid;
+$result = db_select('homebox_users')->fields('shrunk')->condition('uid', $userID,'=')->execute()->fetchAssoc();
+if($result && $_POST){
+    db_update('homebox_users')->fields(array('shrunk' => $_POST,))->condition('uid',$user->uid, '=')->execute();
+}
+if(!$result && $_POST){
+    db_insert('homebox_users')->fields(array('uid' => $userID ,'shrunk' => $_POST,))->execute();
 }
 
 ?>
