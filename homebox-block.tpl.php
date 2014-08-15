@@ -62,6 +62,7 @@ function saveBlockSizes($BoxSettings){
     user_save($account, $edit);
 }
 }
+
 ?>
 
 <?php
@@ -71,4 +72,29 @@ function saveBlockSizes($BoxSettings){
 
 //TODO create/modify homebox.css entry to hide CheckedBoxesList in
 */
+?>
+/** method 2 */
+/** 1. create the database if it doesnt exist */
+<?php
+if(!db_table_exists('BoxSettings'))
+        {$table = array('uid' => '','CheckedBoxes' => '',);}
+    db_create_table('Boxsettings', $table);
+?>
+/** 2. print users seetings to string */
+<?php
+$result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $users->uid,'=')->execute()->fetchAssoc();
+print "<span class='CheckedBoxesList'>" . $result[0] . $result[1] . "</span>"
+?>
+/** 3. recieve post from page, and update user settings */
+<?php
+$result = db_select('BoxSettings', 'n')->fields('CheckedBoxes')->condition('uid', $user->uid,'=')->execute()->fetchAssoc();
+function updateBoxSettings(){
+    if($result){
+        db_update('BoxSettings')->fields(array('CheckedBoxes' => $_POST,))->condition('uid',$user->uid, '=')->execute();
+    }
+    else{
+        db_insert('BoxSettings')->fields(array('uid' => user->uid,'CheckedBoxes' => $_POST,))->execute();
+    }
+}
+
 ?>
